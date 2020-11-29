@@ -16,7 +16,7 @@ PRODUCT_COPY_FILES += \
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-aosip
+    $(LOCAL_PATH)/overlay-evolution
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
@@ -172,6 +172,13 @@ PRODUCT_PACKAGES += \
     Snap \
     vendor.oneplus.camera.CameraHIDL@1.0.vendor \
     vendor.qti.hardware.camera.device@1.0.vendor
+    
+# Prebuilts
+PRODUCT_PACKAGES += \
+    OnePlusCamera \
+    OnePlusGallery \
+    OnePlusCameraService \
+    PixelLauncher
 
 # CNE
 PRODUCT_PACKAGES += \

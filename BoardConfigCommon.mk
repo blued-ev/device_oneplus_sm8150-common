@@ -39,7 +39,7 @@ TARGET_USES_UEFI := true
 BOARD_BOOT_HEADER_VERSION := 2
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 swiotlb=2048 firmware_class.path=/vendor/firmware_mnt/image loop.max_part=7 androidboot.usbcontroller=a600000.dwc3
-BOARD_KERNEL_CMDLINE += androidboot.vbmeta.avb_version=1.0
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := Image-dtb
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_SEPARATED_DTBO := true
@@ -47,11 +47,12 @@ BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_RAMDISK_OFFSET := 0x02000000
 BOARD_ROOT_EXTRA_FOLDERS := op1 op2
+TARGET_KERNEL_ADDITIONAL_FLAGS := AS=llvm-as AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_KERNEL_CLANG_VERSION := latest
 TARGET_KERNEL_HEADER_ARCH := arm64
-TARGET_KERNEL_CONFIG := kronic_defconfig
+TARGET_KERNEL_CONFIG := vendor/sm8150-perf_defconfig
 TARGET_KERNEL_SOURCE := kernel/oneplus/sm8150
 
 # Platform
@@ -124,6 +125,9 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 # DRM
 TARGET_ENABLE_MEDIADRM_64 := true
 
+# faceunlock
+TARGET_FACE_UNLOCK_SUPPORTED := true
+
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(VENDOR_PATH)/config.fs
 
@@ -184,6 +188,8 @@ VENDOR_SECURITY_PATCH := 2020-09-01
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
+SELINUX_IGNORE_NEVERALLOWS := true
+SELINUX_IGNORE_NEVERALLOWS_ON_USER := true
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(VENDOR_PATH)/sepolicy/private
 BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(VENDOR_PATH)/sepolicy/public
 BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy/vendor

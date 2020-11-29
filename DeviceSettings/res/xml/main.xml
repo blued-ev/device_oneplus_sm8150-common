@@ -26,14 +26,24 @@
             android:title="@string/hbm_mode_title"
             android:defaultValue="false" />
 
+        <SwitchPreference
+            android:key="hbm_autobrightness"
+            android:summary="@string/hbm_autobrightness_summary"
+            android:title="@string/hbm_autobrightness_title" />
+
+        <com.evolution.device.DeviceSettings.HBMAutobrightnessThresholdPreference
+            android:key="hbm_autobrightness_threshould"
+            android:title="@string/hbm_autobrightness_threshold_title"
+            android:summary="@string/hbm_autobrightness_threshold_summary" />
+
         <Preference
             android:key="panel_category"
             android:title="@string/panel_category_title"
             android:summary="@string/panel_category_summary"
             android:persistent="false" >
             <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="com.aosip.device.DeviceSettings"
-                    android:targetClass="com.aosip.device.DeviceSettings.PanelSettingsActivity" />
+                    android:targetPackage="com.evolution.device.DeviceSettings"
+                    android:targetClass="com.evolution.device.DeviceSettings.PanelSettingsActivity" />
         </Preference>
 
         <Preference
@@ -42,8 +52,8 @@
             android:summary="@string/touchscreen_gesture_settings_summary"
             android:persistent="false" >
             <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="com.aosip.device.DeviceSettings"
-                    android:targetClass="com.aosip.device.DeviceSettings.TouchscreenGestureSettings" />
+                    android:targetPackage="com.evolution.device.DeviceSettings"
+                    android:targetClass="com.evolution.device.DeviceSettings.TouchscreenGestureSettings" />
         </Preference>
     </PreferenceCategory>
 
@@ -108,7 +118,7 @@
         android:key="vibrator"
         android:title="@string/category_vibrator">
 
-        <com.aosip.device.DeviceSettings.VibratorStrengthPreference
+        <com.evolution.device.DeviceSettings.VibratorStrengthPreference
             android:key="vib_strength"
             android:title="@string/vib_strength_title_head"
             android:summary="@string/vib_strength_summary_head" />
